@@ -1,4 +1,4 @@
-# 🚀 CodeClass | Enterprise Trial Class Booking & Mentor Allocation Platform
+# CodeClass | Enterprise Trial Class Booking & Mentor Allocation Platform
 
 > **A Production-Grade, Multi-Timezone EdTech Scheduling Engine & Interactive WebRTC Classroom**  
 > Built with **TypeScript 5.3**, **React 18**, **Node.js / Express.js**, **Prisma ORM**, **Luxon (IANA Timezones)**, and **Vitest**.
@@ -12,7 +12,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 1. [Executive Summary & Value Proposition](#1-executive-summary--value-proposition)
 2. [High-Level Business Rules & Operational Constraints](#2-high-level-business-rules--operational-constraints)
@@ -60,12 +60,12 @@
 **CodeClass** solves a critical operational challenge in global EdTech SaaS: **scheduling 1-on-1 trial classes between international parents and available mentors across conflicting timezones while maintaining strict workload limits and preventing double bookings.**
 
 ### Key Engineering Candidate Highlights:
-- 🎯 **Decoupled Monorepo Architecture**: Clean separation between React components, Express API controllers, isolated domain logic services (`slotService`, `mentorAllocationService`, `bookingService`), and database access layers.
-- 🔒 **Concurrency & Race-Condition Immunity**: Uses isolated database transactions (`prisma.$transaction`) with pessimistic checks before record creation, eliminating double bookings under simultaneous high-volume traffic.
-- 🌍 **Zero-Offset-Drift Timezone Strategy**: Uses IANA string identifiers (`America/New_York`, `Asia/Kolkata`, `Europe/London`) with Luxon engine, making the platform immune to static offset errors during Daylight Saving Time (DST) shifts.
-- 🛡️ **End-to-End Type Safety & Data Validation**: Strict Zod schemas validate client forms and server endpoints, enforcing strict validation rules (e.g. valid email syntax, date formatting, timezone IANA verification).
-- 📹 **Full Feature WebRTC Live Classroom**: Allows Parents to join live trial sessions **without forced login**, and empowers Mentors & Users with role-based screen sharing (`navigator.mediaDevices.getDisplayMedia`).
-- 🧪 **100% Core Test Coverage**: Automated test suite with 18 unit and integration tests passing cleanly via Vitest.
+-  **Decoupled Monorepo Architecture**: Clean separation between React components, Express API controllers, isolated domain logic services (`slotService`, `mentorAllocationService`, `bookingService`), and database access layers.
+-  **Concurrency & Race-Condition Immunity**: Uses isolated database transactions (`prisma.$transaction`) with pessimistic checks before record creation, eliminating double bookings under simultaneous high-volume traffic.
+-  **Zero-Offset-Drift Timezone Strategy**: Uses IANA string identifiers (`America/New_York`, `Asia/Kolkata`, `Europe/London`) with Luxon engine, making the platform immune to static offset errors during Daylight Saving Time (DST) shifts.
+-  **End-to-End Type Safety & Data Validation**: Strict Zod schemas validate client forms and server endpoints, enforcing strict validation rules (e.g. valid email syntax, date formatting, timezone IANA verification).
+-  **Full Feature WebRTC Live Classroom**: Allows Parents to join live trial sessions **without forced login**, and empowers Mentors & Users with role-based screen sharing (`navigator.mediaDevices.getDisplayMedia`).
+-  **100% Core Test Coverage**: Automated test suite with 18 unit and integration tests passing cleanly via Vitest.
 
 ---
 
@@ -86,37 +86,37 @@
 ## 3. Enterprise System Architecture & Layering
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                              REACT FRONTEND LAYER                               │
-│  ┌──────────────────────────┐ ┌──────────────────────────┐ ┌─────────────────┐ │
-│  │ Multi-Step Booking Flow  │ │ Mentor/Admin Dashboards  │ │ WebRTC Classroom│ │
-│  └────────────┬─────────────┘ └────────────┬─────────────┘ └────────┬────────┘ │
-└───────────────┼────────────────────────────┼────────────────────────┼───────────┘
-                │ HTTP REST / Zod Validated  │                        │
-                ▼                            ▼                        ▼
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                              EXPRESS API BACKEND                                │
-│  ┌──────────────────────────┐ ┌──────────────────────────┐ ┌─────────────────┐ │
-│  │ Express Rate Limiting    │ │ CORS & Helmet Headers    │ │ Error Handler   │ │
-│  └────────────┬─────────────┘ └────────────┬─────────────┘ └────────┬────────┘ │
-│               └────────────────────────────┼────────────────────────┘           │
-│                                            ▼                                    │
-│  ┌───────────────────────────────────────────────────────────────────────────┐  │
-│  │                           DOMAIN SERVICES LAYER                           │  │
-│  │  ┌────────────────────┐  ┌──────────────────────────┐  ┌───────────────┐ │  │
-│  │  │ Slot & Availability│  │ Mentor Workload Allocator│  │ Luxon TZ Engine│ │  │
-│  │  └────────────────────┘  └──────────────────────────┘  └───────────────┘ │  │
-│  │  ┌─────────────────────────────────────────────────────────────────────┐ │  │
-│  │  │ Transactional Booking Engine (prisma.$transaction)                  │ │  │
-│  │  └─────────────────────────────────────────────────────────────────────┘ │  │
-│  └─────────────────────────────────────┬─────────────────────────────────────┘  │
-└────────────────────────────────────────┼────────────────────────────────────────┘
-                                         │ Prisma ORM Queries
-                                         ▼
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                             DATABASE STORAGE LAYER                              │
-│                      PostgreSQL (Prod) / SQLite (Dev)                           │
-└─────────────────────────────────────────────────────────────────────────────────┘
+
+                              REACT FRONTEND LAYER                               
+     
+   Multi-Step Booking Flow    Mentor/Admin Dashboards    WebRTC Classroom 
+     
+
+                 HTTP REST / Zod Validated                          
+                                                                    
+
+                              EXPRESS API BACKEND                                
+     
+   Express Rate Limiting      CORS & Helmet Headers      Error Handler    
+     
+                          
+                                                                                
+    
+                             DOMAIN SERVICES LAYER                             
+           
+     Slot & Availability   Mentor Workload Allocator   Luxon TZ Engine   
+           
+       
+     Transactional Booking Engine (prisma.$transaction)                     
+       
+    
+
+                                          Prisma ORM Queries
+                                         
+
+                             DATABASE STORAGE LAYER                              
+                      PostgreSQL (Prod) / SQLite (Dev)                           
+
 ```
 
 ---
@@ -210,17 +210,17 @@ model Booking {
 
 ```
 Parent Selection (e.g. 7:00 PM EDT in New York)
-                │
-                ▼
+                
+                
 Parse via Luxon (zone: 'America/New_York')
-                │
-                ▼
+                
+                
 Convert to ISO-8601 UTC Date Object (2026-09-29T23:00:00.000Z)
-                │
-                ▼
+                
+                
 Store Canonical UTC Timestamp in PostgreSQL / SQLite
-                │
-                ▼
+                
+                
 Format Dynamically for Mentor Local Time (4:30 AM IST in Kolkata)
 ```
 
@@ -561,7 +561,7 @@ export default router;
 import { Request, Response, NextFunction } from 'express';
 
 export function errorHandler(err: any, _req: Request, res: Response, _next: NextFunction) {
-  console.error('❌ Server Error:', err.message || err);
+  console.error(' Server Error:', err.message || err);
 
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal Server Error';
