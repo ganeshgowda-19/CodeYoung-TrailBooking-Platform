@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    @apply max-w-full overflow-x-hidden w-full;
+  }
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans antialiased;
+  }
+}
+
+::selection {
+  background-color: #f97316;
+  color: #ffffff;
+}
+
+/* Scrollbar styling for light theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Light Codeyoung-inspired EdTech card styles */
+.glass-panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.08);
+}
+
+.glass-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: #818cf8;
+  transform: translateY(-3px);
+  box-shadow: 0 20px 35px -10px rgba(79, 70, 229, 0.15);
+}
+
+.gradient-text-brand {
+  @apply bg-gradient-to-r from-indigo-600 via-purple-600 to-coral-600 bg-clip-text text-transparent;
+}
+
+.gradient-text-coral {
+  @apply bg-gradient-to-r from-coral-600 via-amber-500 to-rose-600 bg-clip-text text-transparent;
+}
+
+/* Continuous Marquee Running Right to Left */
+@keyframes marquee-rtl {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-rtl {
+  display: flex;
+  width: max-content;
+  animation: marquee-rtl 35s linear infinite;
+}
+
+.animate-marquee-rtl:hover {
+  animation-play-state: paused;
+}
+
+/* Global Ambient Background Floating Animations */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(35px, 45px) scale(1.08);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(-40px, -35px) scale(0.94);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 20s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 24s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 16s ease-in-out infinite;
+}
+
+/* Robot Action Sequence: Walk Neatly -> Sit Down & Shake Hand -> Stand Up & Walk Back -> Sit & Shake Hand */
+@keyframes robot-action-sequence {
+  /* 1. Walk Left to Right Neatly */
+  0% {
+    left: 0%;
+    transform: translateY(0) scaleX(1);
+  }
+  26% {
+    left: calc(100% - 165px);
+    transform: translateY(0) scaleX(1);
+  }
+  /* 2. Sit Down Neatly on Right & Shake Hand */
+  30% {
+    left: calc(100% - 165px);
+    transform: translateY(22px) scaleX(1); /* Neat sitting posture */
+  }
+  44% {
+    left: calc(100% - 165px);
+    transform: translateY(22px) scaleX(1); /* Sitting & Hand Shaking */
+  }
+  /* 3. Stand Up Neatly & Turn Around */
+  48% {
+    left: calc(100% - 165px);
+    transform: translateY(0) scaleX(1);
+  }
+  50% {
+    left: calc(100% - 165px);
+    transform: translateY(0) scaleX(-1); /* Turn facing left */
+  }
+  /* 4. Walk Right to Left Neatly */
+  76% {
+    left: 0%;
+    transform: translateY(0) scaleX(-1);
+  }
+  /* 5. Sit Down Neatly on Left & Shake Hand */
+  80% {
+    left: 0%;
+    transform: translateY(22px) scaleX(-1); /* Sit down */
+  }
+  94% {
+    left: 0%;
+    transform: translateY(22px) scaleX(-1); /* Sitting & Hand Shaking */
+  }
+  /* 6. Stand Up & Turn Facing Right */
+  98% {
+    left: 0%;
+    transform: translateY(0) scaleX(-1);
+  }
+  100% {
+    left: 0%;
+    transform: translateY(0) scaleX(1);
+  }
+}
+
+/* Robot Arm Handshake Gesture */
+@keyframes robot-hand-shake {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  15%, 55% {
+    transform: rotate(-35deg);
+  }
+  35%, 75% {
+    transform: rotate(20deg);
+  }
+}
+
+/* Robot Neat Gait Stepping Bounce */
+@keyframes robot-walk-bounce {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-4px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-4px) rotate(2deg);
+  }
+}
+
+/* Alternating Leg Stepping for Neat Walking Motion */
+@keyframes robot-left-leg-step {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-18deg);
+  }
+  75% {
+    transform: rotate(18deg);
+  }
+}
+
+@keyframes robot-right-leg-step {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(18deg);
+  }
+  75% {
+    transform: rotate(-18deg);
+  }
+}
+
+.animate-robot-action-sequence {
+  animation: robot-action-sequence 18s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-robot-hand-shake {
+  animation: robot-hand-shake 1.6s ease-in-out infinite;
+}
+
+.animate-robot-walk-bounce {
+  animation: robot-walk-bounce 0.5s ease-in-out infinite;
+}
+
+.animate-robot-left-leg {
+  animation: robot-left-leg-step 0.5s ease-in-out infinite;
+}
+
+.animate-robot-right-leg {
+  animation: robot-right-leg-step 0.5s ease-in-out infinite;
+}
+
+
+
+

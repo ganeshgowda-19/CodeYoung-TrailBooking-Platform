@@ -1,0 +1,18 @@
+{
+  "short_name": "Codeyoung",
+  "name": "Codeyoung - 1:1 Live Trial Booking Platform",
+  "description": "Smart 1:1 Live Trial Class Booking Engine for EdTech",
+  "icons": [
+    {
+      "src": "/codeyoung-logo.avif",
+      "sizes": "192x192 512x512",
+      "type": "image/avif",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0f172a",
+  "theme_color": "#4f46e5",
+  "display": "standalone",
+  "orientation": "portrait"
+}

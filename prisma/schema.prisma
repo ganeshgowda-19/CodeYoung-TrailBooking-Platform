@@ -1,0 +1,58 @@
+// TrialFlow Prisma Schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Mentor {
+  id               String    @id @default(uuid())
+  name             String
+  email            String    @unique
+  timezone         String    @default("Asia/Kolkata")
+  isActive         Boolean   @default(true)
+  maxDailyClasses  Int       @default(2)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  bookings         Booking[]
+
+  @@map("mentors")
+}
+
+model Parent {
+  id        String    @id @default(uuid())
+  name      String
+  email     String
+  timezone  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  Booking[]
+
+  @@map("parents")
+}
+
+model Booking {
+  id               String   @id @default(uuid())
+  bookingReference String   @unique
+  parentId         String
+  mentorId         String
+  startTimeUtc     DateTime
+  endTimeUtc       DateTime
+  parentTimezone   String
+  mentorTimezone   String
+  status           String   @default("CONFIRMED") // CONFIRMED, CANCELLED, COMPLETED
+  classLink        String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  parent Parent @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  mentor Mentor @relation(fields: [mentorId], references: [id], onDelete: Cascade)
+
+  @@index([startTimeUtc, endTimeUtc])
+  @@index([mentorId, startTimeUtc])
+  @@map("bookings")
+}
