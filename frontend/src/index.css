@@ -53,11 +53,11 @@
 }
 
 .gradient-text-brand {
-  @apply bg-gradient-to-r from-indigo-600 via-purple-600 to-coral-600 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-indigo-600 via-purple-600 to-orange-600 bg-clip-text text-transparent;
 }
 
 .gradient-text-coral {
-  @apply bg-gradient-to-r from-coral-600 via-amber-500 to-rose-600 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-orange-600 via-amber-500 to-rose-600 bg-clip-text text-transparent;
 }
 
 /* Continuous Marquee Running Right to Left */
