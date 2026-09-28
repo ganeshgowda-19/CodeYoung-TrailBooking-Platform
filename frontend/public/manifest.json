@@ -4,9 +4,9 @@
   "description": "Smart 1:1 Live Trial Class Booking Engine for EdTech",
   "icons": [
     {
-      "src": "/codeyoung-logo.avif",
+      "src": "/logo.jpeg",
       "sizes": "192x192 512x512",
-      "type": "image/avif",
+      "type": "image/jpeg",
       "purpose": "any maskable"
     }
   ],
